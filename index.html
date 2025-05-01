@@ -1,0 +1,1154 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tech Insight Hub | Developer & Writer</title>
+        <meta
+            name="description"
+            content="Personal blog and portfolio showcasing technology insights, system design concepts, and programming tutorials"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --primary-color: #6c5ce7;
+                --primary-dark: #4b3dc4;
+                --secondary-color: #fdcb6e;
+                --accent-color: #fd79a8;
+                --dark-color: #2d3436;
+                --light-color: #f5f6fa;
+                --text-color: #333;
+                --text-light: #777;
+                --white: #fff;
+                --bg-gradient: linear-gradient(
+                    135deg,
+                    #667eea 0%,
+                    #764ba2 100%
+                );
+                --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+                --header-height: 80px;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    "Space Grotesk",
+                    system-ui,
+                    -apple-system,
+                    sans-serif;
+                background-color: #f9fafe;
+                color: var(--text-color);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            ::selection {
+                background-color: var(--primary-color);
+                color: white;
+            }
+
+            /* Navigation */
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: var(--header-height);
+                background-color: var(--white);
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                transition: all 0.3s ease;
+            }
+
+            .navbar.scrolled {
+                height: 70px;
+                backdrop-filter: blur(5px);
+                background-color: rgba(255, 255, 255, 0.95);
+            }
+
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                font-size: 24px;
+                font-weight: 700;
+                color: var(--primary-color);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .logo-icon {
+                font-size: 28px;
+                color: var(--secondary-color);
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 30px;
+            }
+
+            .nav-link {
+                position: relative;
+                text-decoration: none;
+                color: var(--dark-color);
+                font-weight: 500;
+                transition: color 0.3s ease;
+            }
+
+            .nav-link:hover {
+                color: var(--primary-color);
+            }
+
+            .nav-link::after {
+                content: "";
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: var(--primary-color);
+                transition: width 0.3s ease;
+            }
+
+            .nav-link:hover::after {
+                width: 100%;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 24px;
+                color: var(--dark-color);
+                cursor: pointer;
+            }
+
+            /* Hero Section */
+            .hero {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                padding: var(--header-height) 0 80px;
+                background: var(--bg-gradient);
+                color: var(--white);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==");
+                opacity: 0.2;
+            }
+
+            .hero-content {
+                max-width: 600px;
+                z-index: 1;
+            }
+
+            .hero-title {
+                font-family: "Playfair Display", serif;
+                font-size: 54px;
+                font-weight: 700;
+                line-height: 1.2;
+                margin-bottom: 20px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+                opacity: 0.9;
+                margin-bottom: 30px;
+            }
+
+            .hero-btns {
+                display: flex;
+                gap: 15px;
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 12px 30px;
+                border-radius: 30px;
+                font-weight: 500;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                gap: 8px;
+            }
+
+            .btn-primary {
+                background-color: var(--white);
+                color: var(--primary-color);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .btn-outline {
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                color: var(--white);
+            }
+
+            .btn-outline:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                transform: translateY(-3px);
+            }
+
+            .hero-image {
+                position: absolute;
+                right: 50px;
+                bottom: 0;
+                width: 500px;
+                animation: float 6s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-20px);
+                }
+            }
+
+            /* About Section */
+            .section {
+                padding: 100px 0;
+            }
+
+            .section-title {
+                text-align: center;
+                font-family: "Playfair Display", serif;
+                font-size: 42px;
+                font-weight: 700;
+                margin-bottom: 60px;
+                position: relative;
+                display: inline-block;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .section-title::after {
+                content: "";
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+                width: 100%;
+                height: 3px;
+                background: linear-gradient(
+                    90deg,
+                    var(--primary-color),
+                    var(--accent-color)
+                );
+                border-radius: 3px;
+            }
+
+            /* Profile Card */
+            .profile-wrapper {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 80px;
+            }
+
+            .profile-card {
+                perspective: 1000px;
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .card-inner {
+                position: relative;
+                width: 100%;
+                height: 480px;
+                transition: transform 0.8s;
+                transform-style: preserve-3d;
+                box-shadow: var(--card-shadow);
+                border-radius: 15px;
+                overflow: hidden;
+            }
+
+            .profile-card:hover .card-inner {
+                transform: rotateY(180deg);
+            }
+
+            .card-front,
+            .card-back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                backface-visibility: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 30px;
+            }
+
+            .card-front {
+                background-color: var(--white);
+                justify-content: center;
+            }
+
+            .card-back {
+                background: linear-gradient(
+                    135deg,
+                    var(--primary-color),
+                    var(--primary-dark)
+                );
+                color: var(--white);
+                transform: rotateY(180deg);
+                justify-content: space-between;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 5px solid rgba(108, 92, 231, 0.1);
+                margin-bottom: 25px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .profile-name {
+                font-family: "Playfair Display", serif;
+                font-size: 24px;
+                font-weight: 700;
+                margin-bottom: 5px;
+            }
+
+            .profile-title {
+                font-size: 14px;
+                color: var(--primary-color);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+
+            .profile-bio {
+                text-align: center;
+                margin-bottom: 25px;
+                color: var(--text-light);
+                font-size: 15px;
+            }
+
+            .social-links {
+                display: flex;
+                gap: 15px;
+            }
+
+            .social-link {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: var(--light-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--dark-color);
+                transition: all 0.3s ease;
+            }
+
+            .social-link:hover {
+                background-color: var(--primary-color);
+                color: var(--white);
+                transform: translateY(-3px);
+            }
+
+            .skills-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .skill-tag {
+                background-color: rgba(255, 255, 255, 0.15);
+                padding: 5px 15px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 500;
+            }
+
+            .contact-btn {
+                background-color: var(--white);
+                color: var(--primary-color);
+                margin-top: 20px;
+            }
+
+            /* Blogs Section */
+            .blogs {
+                background-color: #f6f7fd;
+            }
+
+            .blogs-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+                margin-top: 50px;
+            }
+
+            .blog-card {
+                background-color: var(--white);
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: var(--card-shadow);
+                transition: all 0.3s ease;
+            }
+
+            .blog-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            }
+
+            .blog-image {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .blog-content {
+                padding: 25px;
+            }
+
+            .blog-meta {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-bottom: 15px;
+                font-size: 13px;
+                color: var(--text-light);
+            }
+
+            .blog-category {
+                background-color: var(--secondary-color);
+                color: var(--dark-color);
+                padding: 3px 10px;
+                border-radius: 5px;
+                font-weight: 500;
+                font-size: 12px;
+            }
+
+            .blog-title {
+                font-family: "Playfair Display", serif;
+                font-size: 20px;
+                font-weight: 700;
+                margin-bottom: 15px;
+                line-height: 1.4;
+            }
+
+            .blog-excerpt {
+                color: var(--text-light);
+                font-size: 14px;
+                margin-bottom: 20px;
+                line-height: 1.6;
+            }
+
+            .read-more {
+                display: inline-flex;
+                align-items: center;
+                gap: 5px;
+                color: var(--primary-color);
+                font-weight: 500;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .read-more:hover {
+                gap: 8px;
+            }
+
+            /* Featured Blog */
+            .featured-blog {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                margin-top: 50px;
+                background: var(--white);
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: var(--card-shadow);
+            }
+
+            .featured-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .featured-content {
+                padding: 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .featured-tag {
+                background-color: var(--primary-color);
+                color: white;
+                padding: 5px 15px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 600;
+                display: inline-block;
+                margin-bottom: 15px;
+            }
+
+            .featured-title {
+                font-family: "Playfair Display", serif;
+                font-size: 32px;
+                font-weight: 700;
+                margin-bottom: 20px;
+                line-height: 1.3;
+            }
+
+            /* Contact Section */
+            .contact {
+                background: var(--bg-gradient);
+                color: var(--white);
+                position: relative;
+            }
+
+            .contact::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==");
+                opacity: 0.2;
+            }
+
+            .contact-content {
+                z-index: 1;
+            }
+
+            .contact-form {
+                max-width: 600px;
+                margin: 0 auto;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                padding: 40px;
+                border-radius: 15px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 500;
+            }
+
+            .form-control {
+                width: 100%;
+                padding: 12px 15px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 8px;
+                background-color: rgba(255, 255, 255, 0.1);
+                color: var(--white);
+                font-family: inherit;
+                transition: all 0.3s ease;
+            }
+
+            .form-control:focus {
+                outline: none;
+                border-color: var(--white);
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .form-control::placeholder {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            textarea.form-control {
+                min-height: 150px;
+                resize: vertical;
+            }
+
+            .submit-btn {
+                background-color: var(--white);
+                color: var(--primary-color);
+                border: none;
+                cursor: pointer;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+
+            .submit-btn:hover {
+                background-color: var(--secondary-color);
+                transform: translateY(-3px);
+            }
+
+            /* Footer */
+            .footer {
+                background-color: var(--dark-color);
+                color: var(--white);
+                padding: 50px 0 20px;
+                text-align: center;
+            }
+
+            .footer-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                margin-bottom: 40px;
+            }
+
+            .footer-logo {
+                font-size: 24px;
+                font-weight: 700;
+                color: var(--white);
+                text-decoration: none;
+            }
+
+            .footer-links {
+                display: flex;
+                gap: 30px;
+            }
+
+            .footer-link {
+                color: rgba(255, 255, 255, 0.7);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .footer-link:hover {
+                color: var(--white);
+            }
+
+            .footer-socials {
+                display: flex;
+                gap: 15px;
+            }
+
+            .footer-social {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--white);
+                transition: all 0.3s ease;
+            }
+
+            .footer-social:hover {
+                background-color: var(--primary-color);
+                transform: translateY(-3px);
+            }
+
+            .copyright {
+                font-size: 14px;
+                color: rgba(255, 255, 255, 0.5);
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            /* Responsive styles */
+            @media (max-width: 992px) {
+                .hero-image {
+                    width: 400px;
+                    opacity: 0.6;
+                }
+
+                .featured-blog {
+                    grid-template-columns: 1fr;
+                }
+
+                .featured-image {
+                    height: 300px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .nav-links {
+                    position: fixed;
+                    top: var(--header-height);
+                    left: -100%;
+                    width: 100%;
+                    height: calc(100vh - var(--header-height));
+                    background-color: var(--white);
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 30px;
+                    transition: all 0.5s ease;
+                }
+
+                .nav-links.active {
+                    left: 0;
+                }
+
+                .mobile-menu-btn {
+                    display: block;
+                }
+
+                .hero {
+                    text-align: center;
+                    padding: var(--header-height) 0 60px;
+                }
+
+                .hero-content {
+                    max-width: 100%;
+                }
+
+                .hero-image {
+                    position: relative;
+                    right: auto;
+                    width: 80%;
+                    max-width: 350px;
+                    margin: 30px auto 0;
+                    opacity: 1;
+                }
+
+                .hero-btns {
+                    justify-content: center;
+                }
+
+                .section-title {
+                    font-size: 36px;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .hero-title {
+                    font-size: 42px;
+                }
+
+                .section {
+                    padding: 70px 0;
+                }
+
+                .contact-form {
+                    padding: 30px 20px;
+                }
+
+                .footer-links {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="logo">
+                    <i class="fas fa-code logo-icon"></i>
+                    TechInsight
+                </a>
+                <div class="nav-links">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#blog" class="nav-link">Blog</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Hello, I'm kenil - Developer & Tech Writer
+                    </h1>
+                    <p class="hero-subtitle">
+                        I write about system design, programming concepts and
+                        share my journey in software development
+                    </p>
+                    <div class="hero-btns">
+                        <a href="#blog" class="btn btn-primary">
+                            <i class="fas fa-book-open"></i> Read Blog
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <i class="fas fa-paper-plane"></i> Contact Me
+                        </a>
+                    </div>
+                </div>
+                <img
+                    src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                    alt="Developer working"
+                    class="hero-image"
+                />
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="profile-wrapper">
+                    <div class="profile-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <img
+                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"
+                                    alt="Profile"
+                                    class="profile-img"
+                                />
+                                <h3 class="profile-name">Kenil Jodhani</h3>
+                                <p class="profile-title">
+                                    Senior Developer & Tech Writer
+                                </p>
+                                <p class="profile-bio">
+                                    I'm passionate about building scalable
+                                    systems and sharing knowledge through
+                                    technical writing.
+                                </p>
+                                <div class="social-links">
+                                    <a href="#" class="social-link"
+                                        ><i class="fab fa-github"></i
+                                    ></a>
+                                    <a href="#" class="social-link"
+                                        ><i class="fab fa-linkedin-in"></i
+                                    ></a>
+                                    <a href="#" class="social-link"
+                                        ><i class="fab fa-twitter"></i
+                                    ></a>
+                                    <a href="#" class="social-link"
+                                        ><i class="fab fa-medium"></i
+                                    ></a>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div>
+                                    <h3 class="profile-name">My Skills</h3>
+                                    <div class="skills-list">
+                                        <span class="skill-tag"
+                                            >System Design</span
+                                        >
+                                        <span class="skill-tag"
+                                            >Cloud Architecture</span
+                                        >
+                                        <span class="skill-tag"
+                                            >JavaScript</span
+                                        >
+                                        <span class="skill-tag">Python</span>
+                                        <span class="skill-tag">DevOps</span>
+                                        <span class="skill-tag">SQL/NoSQL</span>
+                                        <span class="skill-tag"
+                                            >Technical Writing</span
+                                        >
+                                    </div>
+                                </div>
+                                <a href="#contact" class="btn contact-btn"
+                                    >Get In Touch</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="section blogs" id="blog">
+            <div class="container">
+                <h2 class="section-title">Latest Articles</h2>
+
+                <div class="featured-blog">
+                    <img
+                        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                        alt="System design concepts"
+                        class="featured-image"
+                    />
+                    <div class="featured-content">
+                        <span class="featured-tag">Featured</span>
+                        <h3 class="featured-title">
+                            30 System Design Concepts Every Developer Should
+                            Know
+                        </h3>
+                        <p class="blog-excerpt">
+                            A comprehensive guide covering fundamental system
+                            design principles, patterns, and best practices for
+                            building scalable applications.
+                        </p>
+                        <a href="#" class="read-more"
+                            >Read Article <i class="fas fa-arrow-right"></i
+                        ></a>
+                    </div>
+                </div>
+
+                <div class="blogs-container">
+                    <article class="blog-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                            alt="Microservices architecture"
+                            class="blog-image"
+                        />
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">System Design</span>
+                                <span>May 15, 2023</span>
+                                <span>8 min read</span>
+                            </div>
+                            <h4 class="blog-title">
+                                Microservices Architecture: Best Practices and
+                                Patterns
+                            </h4>
+                            <p class="blog-excerpt">
+                                Learn how to design and implement microservices
+                                effectively while avoiding common pitfalls in
+                                distributed systems.
+                            </p>
+                            <a href="#" class="read-more"
+                                >Read More <i class="fas fa-arrow-right"></i
+                            ></a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                            alt="Database scaling"
+                            class="blog-image"
+                        />
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">Databases</span>
+                                <span>April 28, 2023</span>
+                                <span>6 min read</span>
+                            </div>
+                            <h4 class="blog-title">
+                                Database Scaling Strategies: From Single Server
+                                to Sharding
+                            </h4>
+                            <p class="blog-excerpt">
+                                A detailed look at different approaches to
+                                scaling databases as your application grows in
+                                traffic and data volume.
+                            </p>
+                            <a href="#" class="read-more"
+                                >Read More <i class="fas fa-arrow-right"></i
+                            ></a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                            alt="Caching strategies"
+                            class="blog-image"
+                        />
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">Performance</span>
+                                <span>April 10, 2023</span>
+                                <span>7 min read</span>
+                            </div>
+                            <h4 class="blog-title">
+                                Effective Caching Strategies for
+                                High-Performance Applications
+                            </h4>
+                            <p class="blog-excerpt">
+                                Explore various caching techniques and how to
+                                implement them to significantly improve your
+                                application's performance.
+                            </p>
+                            <a href="#" class="read-more"
+                                >Read More <i class="fas fa-arrow-right"></i
+                            ></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section contact" id="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-content">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                class="form-control"
+                                placeholder="Your name"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                class="form-control"
+                                placeholder="Your email"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label"
+                                >Message</label
+                            >
+                            <textarea
+                                id="message"
+                                class="form-control"
+                                placeholder="Your message"
+                                required
+                            ></textarea>
+                        </div>
+                        <button type="submit" class="btn submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-code"></i> TechInsight
+                    </a>
+                    <div class="footer-links">
+                        <a href="#home" class="footer-link">Home</a>
+                        <a href="#about" class="footer-link">About</a>
+                        <a href="#blog" class="footer-link">Blog</a>
+                        <a href="#contact" class="footer-link">Contact</a>
+                    </div>
+                    <div class="footer-socials">
+                        <a href="#" class="footer-social"
+                            ><i class="fab fa-github"></i
+                        ></a>
+                        <a href="#" class="footer-social"
+                            ><i class="fab fa-linkedin-in"></i
+                        ></a>
+                        <a href="#" class="footer-social"
+                            ><i class="fab fa-twitter"></i
+                        ></a>
+                        <a href="#" class="footer-social"
+                            ><i class="fab fa-medium"></i
+                        ></a>
+                    </div>
+                </div>
+                <p class="copyright">
+                    &copy; 2025 TechInsight. All rights reserved.
+                </p>
+            </div>
+        </footer>
+
+        <script>
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+            const navLinks = document.querySelector(".nav-links");
+
+            mobileMenuBtn.addEventListener("click", () => {
+                navLinks.classList.toggle("active");
+                mobileMenuBtn.innerHTML = navLinks.classList.contains("active")
+                    ? '<i class="fas fa-times"></i>'
+                    : '<i class="fas fa-bars"></i>';
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault();
+
+                    if (navLinks.classList.contains("active")) {
+                        navLinks.classList.remove("active");
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+
+                    const target = document.querySelector(
+                        this.getAttribute("href"),
+                    );
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: "smooth",
+                    });
+                });
+            });
+
+            // Navbar scroll effect
+            window.addEventListener("scroll", () => {
+                const navbar = document.querySelector(".navbar");
+                if (window.scrollY > 50) {
+                    navbar.classList.add("scrolled");
+                } else {
+                    navbar.classList.remove("scrolled");
+                }
+            });
+        </script>
+        <p
+            style="
+                border-radius: 8px;
+                text-align: center;
+                font-size: 12px;
+                color: #fff;
+                margin-top: 16px;
+                position: fixed;
+                left: 8px;
+                bottom: 8px;
+                z-index: 10;
+                background: rgba(0, 0, 0, 0.8);
+                padding: 4px 8px;
+            "
+        >
+            Made with
+            <a
+                href="https://enzostvs-deepsite.hf.space"
+                style="color: #fff"
+                target="_blank"
+                >DeepSite</a
+            >
+            <img
+                src="https://enzostvs-deepsite.hf.space/logo.svg"
+                alt="DeepSite Logo"
+                style="width: 16px; height: 16px; vertical-align: middle"
+            />
+        </p>
+    </body>
+</html>
